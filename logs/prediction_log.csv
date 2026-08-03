@@ -1,1 +1,31 @@
-
+timestamp,image_name,image_size,image_path,predicted_class,confidence,probabilities,gradcam_generated,processing_time_ms,user_ip,status
+2024-01-01 00:05:01,patient_001.jpg,256x256,uploads/temp/patient_001.jpg,glioma,0.947,"{'glioma': 0.947, 'meningioma': 0.031, 'pituitary': 0.015, 'notumor': 0.007}",True,125,192.168.1.100,success
+2024-01-01 00:05:31,patient_002.jpg,512x512,uploads/temp/patient_002.jpg,notumor,0.892,"{'notumor': 0.892, 'glioma': 0.056, 'meningioma': 0.032, 'pituitary': 0.020}",True,98,192.168.1.101,success
+2024-01-01 00:06:01,patient_003.jpg,224x224,uploads/temp/patient_003.jpg,meningioma,0.963,"{'meningioma': 0.963, 'glioma': 0.021, 'pituitary': 0.010, 'notumor': 0.006}",True,87,192.168.1.102,success
+2024-01-01 00:06:30,patient_004.jpg,300x300,uploads/temp/patient_004.jpg,pituitary,0.876,"{'pituitary': 0.876, 'glioma': 0.065, 'meningioma': 0.034, 'notumor': 0.025}",True,102,192.168.1.103,success
+2024-01-01 00:07:00,patient_005.jpg,400x400,uploads/temp/patient_005.jpg,glioma,0.523,"{'glioma': 0.523, 'meningioma': 0.234, 'pituitary': 0.143, 'notumor': 0.100}",True,115,192.168.1.104,low_confidence
+2024-01-01 00:07:30,patient_006.jpg,256x256,uploads/temp/patient_006.jpg,notumor,0.945,"{'notumor': 0.945, 'glioma': 0.032, 'meningioma': 0.015, 'pituitary': 0.008}",True,92,192.168.1.105,success
+2024-01-01 00:08:00,patient_007.jpg,512x512,uploads/temp/patient_007.jpg,meningioma,0.912,"{'meningioma': 0.912, 'glioma': 0.045, 'pituitary': 0.028, 'notumor': 0.015}",True,105,192.168.1.106,success
+2024-01-01 00:08:30,patient_008.jpg,224x224,uploads/temp/patient_008.jpg,pituitary,0.934,"{'pituitary': 0.934, 'glioma': 0.034, 'meningioma': 0.021, 'notumor': 0.011}",True,78,192.168.1.107,success
+2024-01-01 00:09:00,patient_009.jpg,300x300,uploads/temp/patient_009.jpg,glioma,0.978,"{'glioma': 0.978, 'meningioma': 0.012, 'pituitary': 0.006, 'notumor': 0.004}",True,95,192.168.1.108,success
+2024-01-01 00:09:30,patient_010.jpg,400x400,uploads/temp/patient_010.jpg,notumor,0.889,"{'notumor': 0.889, 'glioma': 0.067, 'meningioma': 0.028, 'pituitary': 0.016}",True,110,192.168.1.109,success
+2024-01-01 00:10:00,patient_011.jpg,256x256,uploads/temp/patient_011.jpg,meningioma,0.956,"{'meningioma': 0.956, 'glioma': 0.023, 'pituitary': 0.014, 'notumor': 0.007}",True,88,192.168.1.110,success
+2024-01-01 00:10:30,patient_012.jpg,512x512,uploads/temp/patient_012.jpg,pituitary,0.901,"{'pituitary': 0.901, 'glioma': 0.056, 'meningioma': 0.028, 'notumor': 0.015}",True,120,192.168.1.111,success
+2024-01-01 00:11:00,patient_013.jpg,224x224,uploads/temp/patient_013.jpg,glioma,0.965,"{'glioma': 0.965, 'meningioma': 0.018, 'pituitary': 0.010, 'notumor': 0.007}",True,82,192.168.1.112,success
+2024-01-01 00:11:30,patient_014.jpg,300x300,uploads/temp/patient_014.jpg,notumor,0.923,"{'notumor': 0.923, 'glioma': 0.045, 'meningioma': 0.021, 'pituitary': 0.011}",True,98,192.168.1.113,success
+2024-01-01 00:12:00,patient_015.jpg,400x400,uploads/temp/patient_015.jpg,meningioma,0.945,"{'meningioma': 0.945, 'glioma': 0.032, 'pituitary': 0.015, 'notumor': 0.008}",True,112,192.168.1.114,success
+2024-01-01 00:12:30,patient_016.jpg,256x256,uploads/temp/patient_016.jpg,pituitary,0.967,"{'pituitary': 0.967, 'glioma': 0.021, 'meningioma': 0.008, 'notumor': 0.004}",True,91,192.168.1.115,success
+2024-01-01 00:13:00,patient_017.jpg,512x512,uploads/temp/patient_017.jpg,glioma,0.912,"{'glioma': 0.912, 'meningioma': 0.045, 'pituitary': 0.028, 'notumor': 0.015}",True,108,192.168.1.116,success
+2024-01-01 00:13:30,patient_018.jpg,224x224,uploads/temp/patient_018.jpg,notumor,0.956,"{'notumor': 0.956, 'glioma': 0.028, 'meningioma': 0.012, 'pituitary': 0.004}",True,85,192.168.1.117,success
+2024-01-01 00:14:00,patient_019.jpg,300x300,uploads/temp/patient_019.jpg,meningioma,0.923,"{'meningioma': 0.923, 'glioma': 0.045, 'pituitary': 0.021, 'notumor': 0.011}",True,103,192.168.1.118,success
+2024-01-01 00:14:30,patient_020.jpg,400x400,uploads/temp/patient_020.jpg,pituitary,0.887,"{'pituitary': 0.887, 'glioma': 0.056, 'meningioma': 0.034, 'notumor': 0.023}",True,117,192.168.1.119,success
+2024-01-01 00:15:00,patient_021.jpg,256x256,uploads/temp/patient_021.jpg,glioma,0.934,"{'glioma': 0.934, 'meningioma': 0.034, 'pituitary': 0.021, 'notumor': 0.011}",True,94,192.168.1.120,success
+2024-01-01 00:15:30,patient_022.jpg,512x512,uploads/temp/patient_022.jpg,notumor,0.978,"{'notumor': 0.978, 'glioma': 0.012, 'meningioma': 0.006, 'pituitary': 0.004}",True,106,192.168.1.121,success
+2024-01-01 00:16:00,patient_023.jpg,224x224,uploads/temp/patient_023.jpg,meningioma,0.956,"{'meningioma': 0.956, 'glioma': 0.023, 'pituitary': 0.014, 'notumor': 0.007}",True,89,192.168.1.122,success
+2024-01-01 00:16:30,patient_024.jpg,300x300,uploads/temp/patient_024.jpg,pituitary,0.945,"{'pituitary': 0.945, 'glioma': 0.032, 'meningioma': 0.015, 'notumor': 0.008}",True,101,192.168.1.123,success
+2024-01-01 00:17:00,patient_025.jpg,400x400,uploads/temp/patient_025.jpg,glioma,0.967,"{'glioma': 0.967, 'meningioma': 0.021, 'pituitary': 0.008, 'notumor': 0.004}",True,113,192.168.1.124,success
+2024-01-01 00:17:30,patient_026.jpg,256x256,uploads/temp/patient_026.jpg,notumor,0.923,"{'notumor': 0.923, 'glioma': 0.045, 'meningioma': 0.021, 'pituitary': 0.011}",True,96,192.168.1.125,success
+2024-01-01 00:18:00,patient_027.jpg,512x512,uploads/temp/patient_027.jpg,meningioma,0.945,"{'meningioma': 0.945, 'glioma': 0.032, 'pituitary': 0.015, 'notumor': 0.008}",True,109,192.168.1.126,success
+2024-01-01 00:18:30,patient_028.jpg,224x224,uploads/temp/patient_028.jpg,pituitary,0.978,"{'pituitary': 0.978, 'glioma': 0.012, 'meningioma': 0.006, 'notumor': 0.004}",True,87,192.168.1.127,success
+2024-01-01 00:19:00,patient_029.jpg,300x300,uploads/temp/patient_029.jpg,glioma,0.912,"{'glioma': 0.912, 'meningioma': 0.045, 'pituitary': 0.028, 'notumor': 0.015}",True,99,192.168.1.128,success
+2024-01-01 00:19:30,patient_030.jpg,400x400,uploads/temp/patient_030.jpg,notumor,0.956,"{'notumor': 0.956, 'glioma': 0.028, 'meningioma': 0.012, 'pituitary': 0.004}",True,118,192.168.1.129,success
