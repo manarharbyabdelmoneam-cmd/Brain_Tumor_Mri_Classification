@@ -1,1 +1,59 @@
+# config.yaml
+# إعدادات المشروع العامة
 
+project:
+  name: "Brain Tumor MRI Classification"
+  version: "1.0.0"
+  description: "Deep Learning system for brain tumor classification from MRI images"
+
+paths:
+  data_dir: "data/"
+  models_dir: "models_saved/"
+  reports_dir: "reports/"
+  uploads_dir: "uploads/"
+  logs_dir: "logs/"
+
+data:
+  img_size: [224, 224]
+  batch_size: 32
+  num_classes: 4
+  classes: ["glioma", "meningioma", "pituitary", "notumor"]
+  validation_split: 0.2
+  random_seed: 42
+
+augmentation:
+  rotation_range: 20
+  width_shift_range: 0.1
+  height_shift_range: 0.1
+  shear_range: 0.1
+  zoom_range: 0.1
+  horizontal_flip: true
+  fill_mode: "nearest"
+
+models:
+  mobilenetv2:
+    input_shape: [224, 224, 3]
+    dropout_rate: 0.3
+    dense_units: 128
+    learning_rate: 0.0001
+    epochs: 25
+    fine_tune_epochs: 10
+    
+  resnet50:
+    input_shape: [224, 224, 3]
+    dropout_rate: 0.3
+    dense_units: 128
+    learning_rate: 0.0001
+    epochs: 25
+    fine_tune_epochs: 10
+
+training:
+  early_stopping_patience: 5
+  reduce_lr_patience: 3
+  reduce_lr_factor: 0.2
+
+app:
+  title: "🧠 Brain Tumor MRI Classifier"
+  theme: "dark"
+  max_file_size: 10
+  allowed_extensions: ["jpg", "jpeg", "png"]
