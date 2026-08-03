@@ -1,36 +1,38 @@
+
+Uploader · PY
 # ============================================================
 # app/components/uploader.py
 # مكون رفع الصور - إدارة رفع ومعالجة الصور في واجهة Streamlit
 # ============================================================
-
+ 
 import streamlit as st
 import os
 import tempfile
-from typing import Optional, Tuple, List, Any, Dict, Union
+from typing import Optional, Tuple, List, Any
 from PIL import Image
 import numpy as np
 import cv2
 from datetime import datetime
-
+ 
 # ============================================================
 # 1. إعدادات رفع الملفات
 # ============================================================
-
+ 
 # الأنواع المسموحة
 ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'bmp', 'tiff']
 ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/bmp', 'image/tiff']
-
+ 
 # الحد الأقصى لحجم الملف (بالميجابايت)
 MAX_FILE_SIZE_MB = 10
 MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024
-
+ 
 # الأبعاد المطلوبة للنموذج
 TARGET_SIZE = (224, 224)
-
+ 
 # ============================================================
 # 2. التحقق من صحة الملف
 # ============================================================
-
+ 
 def validate_file(uploaded_file) -> Tuple[bool, str]:
     """
     التحقق من صحة الملف المرفوع.
@@ -68,11 +70,11 @@ def validate_file(uploaded_file) -> Tuple[bool, str]:
         return False, f"❌ نوع الملف غير مدعوم. الأنواع المدعومة: {', '.join(ALLOWED_MIME_TYPES)}"
     
     return True, "✅ الملف صالح."
-
+ 
 # ============================================================
 # 3. قراءة الصورة ومعالجتها
 # ============================================================
-
+ 
 def load_image(uploaded_file) -> Optional[np.ndarray]:
     """
     قراءة الصورة من الملف المرفوع وتحويلها إلى مصفوفة NumPy.
@@ -99,11 +101,11 @@ def load_image(uploaded_file) -> Optional[np.ndarray]:
     except Exception as e:
         st.error(f"❌ خطأ في قراءة الصورة: {e}")
         return None
-
+ 
 # ============================================================
 # 4. معالجة الصورة للتنبؤ
 # ============================================================
-
+ 
 def preprocess_image_for_prediction(image: np.ndarray, 
                                      target_size: Tuple[int, int] = TARGET_SIZE) -> Optional[np.ndarray]:
     """
@@ -131,11 +133,11 @@ def preprocess_image_for_prediction(image: np.ndarray,
     except Exception as e:
         st.error(f"❌ خطأ في معالجة الصورة: {e}")
         return None
-
+ 
 # ============================================================
 # 5. حفظ الصورة المرفوعة مؤقتًا
 # ============================================================
-
+ 
 def save_uploaded_file(uploaded_file, 
                         save_dir: str = "uploads/temp") -> Optional[str]:
     """
@@ -166,11 +168,11 @@ def save_uploaded_file(uploaded_file,
     except Exception as e:
         st.error(f"❌ خطأ في حفظ الملف: {e}")
         return None
-
+ 
 # ============================================================
 # 6. حذف الملفات المؤقتة
 # ============================================================
-
+ 
 def cleanup_temp_files(temp_dir: str = "uploads/temp") -> None:
     """
     حذف جميع الملفات المؤقتة في المجلد.
@@ -186,11 +188,11 @@ def cleanup_temp_files(temp_dir: str = "uploads/temp") -> None:
                     os.remove(file_path)
     except Exception as e:
         st.warning(f"⚠️ تعذر حذف الملفات المؤقتة: {e}")
-
+ 
 # ============================================================
 # 7. عرض معاينة الصورة
 # ============================================================
-
+ 
 def display_image_preview(image: np.ndarray, caption: Optional[str] = None) -> None:
     """
     عرض معاينة الصورة في الواجهة.
@@ -218,11 +220,11 @@ def display_image_preview(image: np.ndarray, caption: Optional[str] = None) -> N
     
     # عرض الصورة
     st.image(image_rgb, caption=caption, use_column_width=True)
-
+ 
 # ============================================================
 # 8. مكون رفع الصورة الكامل
 # ============================================================
-
+ 
 def render_uploader(show_preview: bool = True,
                      show_validation: bool = True) -> Tuple[Optional[np.ndarray], 
                                                             Optional[str],
@@ -291,11 +293,11 @@ def render_uploader(show_preview: bool = True,
     }
     
     return image, file_path, metadata
-
+ 
 # ============================================================
 # 9. مكون رفع متعدد الصور
 # ============================================================
-
+ 
 def render_multi_uploader(max_files: int = 5) -> Tuple[List[np.ndarray], 
                                                          List[str], 
                                                          List[dict]]:
@@ -354,11 +356,11 @@ def render_multi_uploader(max_files: int = 5) -> Tuple[List[np.ndarray],
         })
     
     return images, file_paths, metadata_list
-
+ 
 # ============================================================
 # 10. عرض أزرار التحكم (رفع، مسح، تحليل)
 # ============================================================
-
+ 
 def display_upload_controls() -> Tuple[bool, bool, bool]:
     """
     عرض أزرار التحكم في رفع الصور.
@@ -378,11 +380,11 @@ def display_upload_controls() -> Tuple[bool, bool, bool]:
         analyze_clicked = st.button("🔍 تحليل", use_container_width=True, type="primary")
     
     return upload_clicked, clear_clicked, analyze_clicked
-
+ 
 # ============================================================
 # 11. عرض أزرار التحكم المتقدمة
 # ============================================================
-
+ 
 def display_advanced_controls() -> Dict[str, Any]:
     """
     عرض أزرار تحكم متقدمة (خيارات إضافية).
@@ -407,11 +409,11 @@ def display_advanced_controls() -> Dict[str, Any]:
             'save_results': save_results,
             'show_all_probabilities': show_all_probabilities
         }
-
+ 
 # ============================================================
 # 12. مكون رفع الصورة الكامل مع التحكم
 # ============================================================
-
+ 
 def render_full_upload_section(show_controls: bool = True,
                                 show_advanced: bool = True) -> Tuple[Optional[np.ndarray],
                                                                       Optional[str],
@@ -447,11 +449,11 @@ def render_full_upload_section(show_controls: bool = True,
         controls.update(advanced_options)
     
     return image, file_path, metadata, controls
-
+ 
 # ============================================================
 # 13. معاينة الصورة قبل المعالجة
 # ============================================================
-
+ 
 def preview_uploaded_image(image: np.ndarray, 
                             target_size: Tuple[int, int] = TARGET_SIZE) -> None:
     """
@@ -476,3 +478,4 @@ def preview_uploaded_image(image: np.ndarray,
         # معالجة الصورة
         processed = cv2.resize(image, target_size, interpolation=cv2.INTER_LINEAR)
         display_image_preview(processed, caption=f"الأبعاد: {target_size[0]} × {target_size[1]}")
+ 
