@@ -3,18 +3,14 @@
 # الملف الرئيسي لتطبيق Streamlit - Brain Tumor MRI Classifier
 # ============================================================
 
+# ============================================================
+# 1. استيراد Streamlit أولاً (مهم جداً)
+# ============================================================
 import streamlit as st
-import os
-import sys
-from pathlib import Path
-
-# إضافة مسار المشروع إلى sys.path
-sys.path.append(str(Path(__file__).parent.parent))
 
 # ============================================================
-# 1. إعدادات الصفحة (يجب أن تكون أول شيء)
+# 2. إعدادات الصفحة (يجب أن تكون أول شيء بعد استيراد streamlit)
 # ============================================================
-
 st.set_page_config(
     page_title="🧠 Brain Tumor MRI Classifier",
     page_icon="🧠",
@@ -23,9 +19,18 @@ st.set_page_config(
 )
 
 # ============================================================
-# 2. استيراد المكونات
+# 3. باقي الاستيرادات (بعد set_page_config)
 # ============================================================
+import os
+import sys
+from pathlib import Path
 
+# إضافة مسار المشروع إلى sys.path
+sys.path.append(str(Path(__file__).parent.parent))
+
+# ============================================================
+# 4. استيراد المكونات من المشروع
+# ============================================================
 from app.components.sidebar import render_sidebar
 from app.components.uploader import render_uploader
 from app.components.results import display_full_results, display_error_message
@@ -38,7 +43,7 @@ from app.utils.image_processor import display_image_info
 from app.utils.formatter import format_class_name, format_confidence
 
 # ============================================================
-# 3. إعدادات المشروع
+# 5. إعدادات المشروع
 # ============================================================
 
 # مسارات النماذج
@@ -53,7 +58,7 @@ DEFAULT_CLASS_NAMES = ['glioma', 'meningioma', 'pituitary', 'notumor']
 TARGET_SIZE = (224, 224)
 
 # ============================================================
-# 4. تحميل أسماء الفئات
+# 6. تحميل أسماء الفئات
 # ============================================================
 
 def load_class_names() -> list:
@@ -74,7 +79,7 @@ def load_class_names() -> list:
     return DEFAULT_CLASS_NAMES
 
 # ============================================================
-# 5. تحميل النموذج
+# 7. تحميل النموذج
 # ============================================================
 
 @st.cache_resource
@@ -93,7 +98,7 @@ def get_model():
         return None
 
 # ============================================================
-# 6. تهيئة حالة الجلسة
+# 8. تهيئة حالة الجلسة
 # ============================================================
 
 def init_session_state():
@@ -119,7 +124,7 @@ def init_session_state():
         st.session_state.uploaded_file_path = None
 
 # ============================================================
-# 7. الصفحة الرئيسية (Home)
+# 9. الصفحة الرئيسية (Home)
 # ============================================================
 
 def home_page():
@@ -181,16 +186,6 @@ def home_page():
                 class_names = st.session_state.class_names
                 
                 if model is not None:
-                    # التنبؤ
-                    result = predict_from_uploaded(
-                        model=model,
-                        uploaded_file=None,  # لأننا نستخدم الصورة مباشرة
-                        class_names=class_names,
-                        target_size=TARGET_SIZE,
-                        use_gradcam=True
-                    )
-                    
-                    # تعديل للاستخدام مع الصورة مباشرة
                     from app.utils.predictor import predict_and_format
                     result = predict_and_format(
                         model=model,
@@ -232,7 +227,7 @@ def home_page():
         """)
 
 # ============================================================
-# 8. صفحة تحليل الصورة
+# 10. صفحة تحليل الصورة
 # ============================================================
 
 def analyze_page():
@@ -289,7 +284,7 @@ def analyze_page():
         st.info("💡 قم برفع صورة وتحليلها لعرض النتائج هنا.")
 
 # ============================================================
-# 9. دالة عرض الصفحة حسب التنقل
+# 11. دالة عرض الصفحة حسب التنقل
 # ============================================================
 
 def render_page(page: str):
@@ -307,7 +302,7 @@ def render_page(page: str):
         home_page()
 
 # ============================================================
-# 10. تشغيل التطبيق
+# 12. تشغيل التطبيق
 # ============================================================
 
 def main():
@@ -344,14 +339,20 @@ def main():
             st.session_state.page = 'analyze'
             st.rerun()
         
-        if st.button("📈 تحليل التدريب", use_container_width=True):
-            st.switch_page("pages/2_Training_Analysis.py")
+        # التحقق من وجود ملفات الصفحات قبل عرض الأزرار
+        pages_dir = Path(__file__).parent / "pages"
         
-        if st.button("📊 مقارنة النماذج", use_container_width=True):
-            st.switch_page("pages/1_Model_Comparison.py")
+        if (pages_dir / "2_Training_Analysis.py").exists():
+            if st.button("📈 تحليل التدريب", use_container_width=True):
+                st.switch_page("pages/2_Training_Analysis.py")
         
-        if st.button("📖 التوثيق", use_container_width=True):
-            st.switch_page("pages/3_Documentation.py")
+        if (pages_dir / "1_Model_Comparison.py").exists():
+            if st.button("📊 مقارنة النماذج", use_container_width=True):
+                st.switch_page("pages/1_Model_Comparison.py")
+        
+        if (pages_dir / "3_Documentation.py").exists():
+            if st.button("📖 التوثيق", use_container_width=True):
+                st.switch_page("pages/3_Documentation.py")
         
         st.markdown("---")
         
@@ -368,7 +369,7 @@ def main():
     render_page(st.session_state.page)
 
 # ============================================================
-# 11. تشغيل التطبيق
+# 13. تشغيل التطبيق
 # ============================================================
 
 if __name__ == "__main__":
