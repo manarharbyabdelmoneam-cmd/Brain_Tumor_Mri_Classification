@@ -120,8 +120,15 @@ def display_image_preview(image: np.ndarray, caption: Optional[str] = None) -> N
         st.warning("⚠️ لا توجد صورة لعرضها.")
         return
 
-    # ✅ إصلاح: use_container_width بدل use_column_width
-    st.image(image, caption=caption, use_container_width=True)
+    # تحويل numpy array إلى PIL Image لضمان التوافق مع st.image
+    try:
+        if isinstance(image, np.ndarray):
+            pil_image = Image.fromarray(image.astype(np.uint8))
+        else:
+            pil_image = image
+        st.image(pil_image, caption=caption, use_container_width=True)
+    except Exception as e:
+        st.error(f"❌ خطأ في عرض الصورة: {e}")
 
 # ============================================================
 # 8. مكون رفع الصورة الكامل
