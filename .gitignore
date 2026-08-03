@@ -1,1 +1,393 @@
+# ============================================================
+# .gitignore
+# الملفات والمجلدات المستثناة من GitHub
+# ============================================================
 
+# ============================================================
+# 1. بيئات Python
+# ============================================================
+
+# البيئات الافتراضية
+venv/
+env/
+.venv/
+.env/
+virtualenv/
+ENV/
+env.bak/
+venv.bak/
+
+# ملفات Python
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyzw
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+bin/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib64/
+lib/
+include/
+share/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ============================================================
+# 2. ملفات البيانات
+# ============================================================
+
+# البيانات الخام
+data/raw/
+data/processed/
+data/interim/
+data/external/
+
+# ملفات البيانات الكبيرة
+*.h5
+*.hdf5
+*.keras
+*.pb
+*.tflite
+*.onnx
+*.pkl
+*.pickle
+*.joblib
+*.npy
+*.npz
+
+# ملفات الصور
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.tif
+*.webp
+
+# ============================================================
+# 3. ملفات النماذج
+# ============================================================
+
+# النماذج المدربة
+models_saved/
+models/
+*.model
+*.weights
+*.h5
+*.keras
+*.pb
+
+# ملفات الأوزان
+*.weights.h5
+*_weights.h5
+*.ckpt
+*.ckpt.index
+*.ckpt.data-*
+
+# معلومات النماذج
+*.metadata
+*.config
+!models_saved/metadata/class_names.json
+!models_saved/metadata/model_config.json
+
+# ============================================================
+# 4. ملفات التقارير والمخرجات
+# ============================================================
+
+# التقارير
+reports/
+outputs/
+results/
+*.html
+*.csv
+*.xlsx
+*.xls
+*.tsv
+
+# الرسوم البيانية
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.pdf
+*.eps
+
+# ============================================================
+# 5. ملفات السجلات
+# ============================================================
+
+# سجلات التطبيق
+logs/
+*.log
+*.log.*
+log/
+Logs/
+
+# سجلات التنبؤات
+prediction_log.csv
+prediction_log*.csv
+*.log.csv
+
+# ============================================================
+# 6. ملفات IDE والمحررات
+# ============================================================
+
+# VS Code
+.vscode/
+*.code-workspace
+.vscode-test/
+.history/
+
+# PyCharm
+.idea/
+*.iml
+.idea_modules/
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*.un~
+*~
+.~*
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ============================================================
+# 7. ملفات نظام التشغيل
+# ============================================================
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+*.tmp
+*.temp
+*.swp
+*.lock
+
+# Linux
+.directory
+*.tmp
+*.temp
+*.swp
+*.lock
+
+# ============================================================
+# 8. ملفات البيئة والمتغيرات
+# ============================================================
+
+# متغيرات البيئة
+.env
+.env.local
+.env.*.local
+.env.example.local
+*.env
+.env.production
+.env.staging
+.env.development
+
+# ملفات السرية
+*.secret
+*.key
+*.pem
+*.crt
+*.cer
+*.p12
+*.pfx
+
+# ============================================================
+# 9. ملفات الاختبارات
+# ============================================================
+
+# التقارير والملفات المؤقتة
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+*.cover
+*.py,cover
+.cache/
+nosetests.xml
+coverage.xml
+*.log
+test-results/
+
+# ============================================================
+# 10. ملفات Jupyter Notebook
+# ============================================================
+
+.ipynb_checkpoints/
+*.ipynb
+*_checkpoint.ipynb
+*.nbconvert.ipynb
+*.smv
+*.pynb
+
+# ============================================================
+# 11. ملفات Streamlit
+# ============================================================
+
+.streamlit/secrets.toml
+.streamlit/config.toml
+.streamlit/cache/
+.streamlit/uploads/
+
+# ============================================================
+# 12. ملفات Docker
+# ============================================================
+
+.docker/
+docker-compose.override.yml
+*.dockerignore
+Dockerfile.*
+.dockerignore
+
+# ============================================================
+# 13. ملفات أخرى
+# ============================================================
+
+# ملفات التخزين المؤقت
+cache/
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# ملفات التحميل
+downloads/
+uploads/
+*.download
+*.part
+
+# ملفات النسخ الاحتياطي
+*.bak
+*.old
+*.orig
+*.rej
+*.patch
+
+# ملفات الضغط
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# ============================================================
+# 14. ملفات التكوين الخاصة
+# ============================================================
+
+# ملفات التكوين الخاصة بالمستخدم
+*.local
+*.user
+*.private
+config.local.yaml
+config.local.yml
+settings.local.py
+
+# ============================================================
+# 15. ملفات التعريب
+# ============================================================
+
+*.mo
+*.po
+*.pot
+
+# ============================================================
+# 16. ملفات التوثيق المؤقتة
+# ============================================================
+
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+
+# ============================================================
+# 17. استثناءات خاصة بالمشروع
+# ============================================================
+
+# استثناء حفظ ملفات النماذج المهمة (اختياري)
+!models_saved/README.md
+!models_saved/metadata/README.md
+
+# استثناء حفظ مجلدات فارغة
+!.gitkeep
+!data/.gitkeep
+!data/raw/.gitkeep
+!reports/.gitkeep
+!reports/figures/.gitkeep
+!reports/metrics/.gitkeep
+!logs/.gitkeep
+!uploads/.gitkeep
+!uploads/temp/.gitkeep
+
+# ============================================================
+# 18. ملفات المشروع الخاصة
+# ============================================================
+
+# ملفات التدريب المؤقتة
+*.h5.tmp
+*.keras.tmp
+training_history.json
+training_log.csv
+
+# ملفات التنبؤ المؤقتة
+prediction_cache.json
+temp_predictions/
+
+# ملفات الاختبار المؤقتة
+test_*.py
+*_test.py
+!tests/
