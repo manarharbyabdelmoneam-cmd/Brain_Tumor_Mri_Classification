@@ -1,59 +1,325 @@
+# ============================================================
 # config.yaml
-# إعدادات المشروع العامة
+# إعدادات مشروع Brain Tumor MRI Classifier
+# ============================================================
+
+# ============================================================
+# 1. معلومات المشروع
+# ============================================================
 
 project:
   name: "Brain Tumor MRI Classification"
   version: "1.0.0"
   description: "Deep Learning system for brain tumor classification from MRI images"
+  author: "AI Team"
+  email: "support@braintumor.ai"
+  repository: "https://github.com/your-username/Brain-Tumor-MRI-Classification"
+  license: "MIT"
+
+# ============================================================
+# 2. مسارات المشروع
+# ============================================================
 
 paths:
   data_dir: "data/"
+  raw_data_dir: "data/raw/"
+  processed_data_dir: "data/processed/"
   models_dir: "models_saved/"
+  metadata_dir: "models_saved/metadata/"
+  weights_dir: "models_saved/weights/"
   reports_dir: "reports/"
+  figures_dir: "reports/figures/"
+  metrics_dir: "reports/metrics/"
   uploads_dir: "uploads/"
+  temp_uploads_dir: "uploads/temp/"
   logs_dir: "logs/"
+  outputs_dir: "outputs/"
+
+# ============================================================
+# 3. إعدادات البيانات
+# ============================================================
 
 data:
+  # حجم الصورة
   img_size: [224, 224]
+  img_channels: 3
+  
+  # الدفعات
   batch_size: 32
+  
+  # عدد الفئات
   num_classes: 4
   classes: ["glioma", "meningioma", "pituitary", "notumor"]
+  
+  # تقسيم البيانات
   validation_split: 0.2
+  test_split: 0.1
   random_seed: 42
+  
+  # تنسيق البيانات
+  class_mode: "categorical"
+  color_mode: "rgb"
+  shuffle: true
+
+# ============================================================
+# 4. إعدادات Data Augmentation
+# ============================================================
 
 augmentation:
+  # التحويلات الهندسية
   rotation_range: 20
   width_shift_range: 0.1
   height_shift_range: 0.1
   shear_range: 0.1
   zoom_range: 0.1
+  
+  # القلبيات
   horizontal_flip: true
+  vertical_flip: false
+  
+  # الإعدادات الأخرى
   fill_mode: "nearest"
+  brightness_range: [0.8, 1.2]
+  channel_shift_range: 0.0
+  
+  # Albumentations (اختياري)
+  use_albumentations: false
+  albumentations_config:
+    clahe_clip_limit: 2.0
+    clahe_tile_grid_size: [8, 8]
+    random_gamma_limit: [80, 120]
+    grid_distort_limit: 0.3
+    optical_distort_limit: 0.05
+
+# ============================================================
+# 5. إعدادات النموذج
+# ============================================================
 
 models:
+  # ============================================================
+  # 5.1. MobileNetV2
+  # ============================================================
   mobilenetv2:
+    enabled: true
     input_shape: [224, 224, 3]
-    dropout_rate: 0.3
-    dense_units: 128
-    learning_rate: 0.0001
-    epochs: 25
-    fine_tune_epochs: 10
+    weights: "imagenet"
+    include_top: false
+    pooling: "avg"
+    classes: null
     
-  resnet50:
-    input_shape: [224, 224, 3]
+    # طبقات مخصصة
     dropout_rate: 0.3
     dense_units: 128
+    activation: "relu"
+    output_activation: "softmax"
+    
+    # إعدادات التدريب
     learning_rate: 0.0001
     epochs: 25
     fine_tune_epochs: 10
+    fine_tune_lr: 0.00001
+  
+  # ============================================================
+  # 5.2. ResNet50
+  # ============================================================
+  resnet50:
+    enabled: false
+    input_shape: [224, 224, 3]
+    weights: "imagenet"
+    include_top: false
+    pooling: "avg"
+    classes: null
+    
+    dropout_rate: 0.3
+    dense_units: 128
+    activation: "relu"
+    output_activation: "softmax"
+    
+    learning_rate: 0.0001
+    epochs: 25
+    fine_tune_epochs: 10
+    fine_tune_lr: 0.00001
+  
+  # ============================================================
+  # 5.3. EfficientNetB0
+  # ============================================================
+  efficientnetb0:
+    enabled: false
+    input_shape: [224, 224, 3]
+    weights: "imagenet"
+    include_top: false
+    pooling: "avg"
+    classes: null
+    
+    dropout_rate: 0.3
+    dense_units: 128
+    activation: "relu"
+    output_activation: "softmax"
+    
+    learning_rate: 0.0001
+    epochs: 25
+    fine_tune_epochs: 10
+    fine_tune_lr: 0.00001
+  
+  # ============================================================
+  # 5.4. النموذج المخصص (Custom CNN)
+  # ============================================================
+  custom_cnn:
+    enabled: false
+    input_shape: [224, 224, 3]
+    
+    # طبقات الـ Convolution
+    conv_layers:
+      - filters: 32
+        kernel_size: 3
+        activation: "relu"
+        pooling: "max"
+      - filters: 64
+        kernel_size: 3
+        activation: "relu"
+        pooling: "max"
+      - filters: 128
+        kernel_size: 3
+        activation: "relu"
+        pooling: "max"
+    
+    # طبقات الـ Dense
+    dense_units: 128
+    dropout_rate: 0.3
+    output_activation: "softmax"
+    
+    learning_rate: 0.001
+    epochs: 50
+
+# ============================================================
+# 6. إعدادات التدريب
+# ============================================================
 
 training:
+  # الـ Callbacks
   early_stopping_patience: 5
   reduce_lr_patience: 3
   reduce_lr_factor: 0.2
+  min_lr: 0.0000001
+  
+  # الحفظ
+  save_best_only: true
+  save_weights_only: false
+  
+  # السجلات
+  verbose: 1
+  log_frequency: 1
+  
+  # الأداء
+  use_multiprocessing: false
+  workers: 1
+
+# ============================================================
+# 7. إعدادات التقييم
+# ============================================================
+
+evaluation:
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_score"
+  
+  average: "weighted"
+  zero_division: 0
+  
+  # التقارير
+  save_confusion_matrix: true
+  save_roc_curves: true
+  save_classification_report: true
+  
+  # العتبات
+  confidence_threshold: 0.5
+  low_confidence_threshold: 0.6
+  high_confidence_threshold: 0.8
+
+# ============================================================
+# 8. إعدادات التطبيق (Streamlit)
+# ============================================================
 
 app:
+  # معلومات التطبيق
   title: "🧠 Brain Tumor MRI Classifier"
+  favicon: "🧠"
   theme: "dark"
-  max_file_size: 10
+  
+  # الخادم
+  port: 8501
+  address: "0.0.0.0"
+  
+  # رفع الملفات
+  max_upload_size_mb: 10
   allowed_extensions: ["jpg", "jpeg", "png"]
+  
+  # الميزات
+  enable_gradcam: true
+  enable_prediction_log: true
+  enable_upload_save: true
+  enable_cache: true
+  enable_lazy_loading: true
+  
+  # التخزين المؤقت
+  cache_ttl: 3600  # بالثواني
+
+# ============================================================
+# 9. إعدادات السجلات (Logging)
+# ============================================================
+
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  
+  # تنسيق السجلات
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  
+  # ملفات السجلات
+  app_log_file: "logs/app.log"
+  prediction_log_file: "logs/prediction_log.csv"
+  
+  # حجم الملفات
+  max_log_size_mb: 10
+  backup_count: 5
+
+# ============================================================
+# 10. إعدادات Grad-CAM
+# ============================================================
+
+gradcam:
+  enabled: true
+  alpha: 0.6  # شفافية الخريطة الحرارية
+  colormap: "jet"  # jet, hot, viridis, etc.
+  overlay_original: true
+  
+  # إعدادات الطبقة
+  layer_name: null  # null = auto-detect
+  
+  # حفظ الصور
+  save_gradcam_images: true
+  gradcam_output_dir: "outputs/gradcam/"
+
+# ============================================================
+# 11. إعدادات النشر (Deployment)
+# ============================================================
+
+deployment:
+  # الحاويات (Docker)
+  docker_image: "brain-tumor-mri-classifier"
+  docker_tag: "latest"
+  
+  # البيئات
+  environment: "development"  # development, staging, production
+  
+  # الحماية
+  enable_cors: false
+  enable_csrf: true
+  secret_key: "your-secret-key-here-change-in-production"
+  
+  # SSL (اختياري)
+  ssl_enabled: false
+  ssl_cert_path: "/etc/ssl/certs/your-cert.pem"
+  ssl_key_path: "/etc/ssl/private/your-key.pem"
