@@ -288,13 +288,13 @@ def display_prediction_results(result: Dict[str, Any]) -> None:
         with col1:
             st.markdown("#### 📷 الصورة الأصلية")
             if result.get('original_image') is not None:
-                st.image(result['original_image'], use_container_width=True)
+                st.image(result['original_image'], width=700)
             else:
                 st.info("لا توجد صورة أصلية لعرضها.")
 
         with col2:
             st.markdown("#### 🔥 Grad-CAM")
-            st.image(result['gradcam_image'], use_container_width=True)
+            st.image(result['gradcam_image'], width=700)
             st.caption("المناطق الحمراء: المناطق التي ركز عليها النموذج")
 
     with st.expander("📋 معلومات إضافية", expanded=False):
@@ -327,7 +327,7 @@ def predictor_ui(model: tf.keras.Model,
         use_gradcam = st.checkbox("🔥 عرض Grad-CAM", value=True)
 
     with col2:
-        if st.button("🔍 تحليل الصورة", type="primary", use_container_width=True):
+        if st.button("🔍 تحليل الصورة", type="primary", width=700):
             if uploaded_file is not None:
                 with st.spinner("⏳ جاري تحليل الصورة..."):
                     result = predict_from_uploaded(
