@@ -1,13 +1,15 @@
+
+Main · PY
 # ============================================================
-# app/app.py
+# app/main.py
 # الملف الرئيسي لتطبيق Streamlit - Brain Tumor MRI Classifier
 # ============================================================
-
+ 
 # ============================================================
 # 1. استيراد Streamlit أولاً (مهم جداً)
 # ============================================================
 import streamlit as st
-
+ 
 # ============================================================
 # 2. إعدادات الصفحة (يجب أن تكون أول شيء بعد استيراد streamlit)
 # ============================================================
@@ -17,17 +19,17 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
+ 
 # ============================================================
 # 3. باقي الاستيرادات (بعد set_page_config)
 # ============================================================
 import os
 import sys
 from pathlib import Path
-
+ 
 # إضافة مسار المشروع إلى sys.path
 sys.path.append(str(Path(__file__).parent.parent))
-
+ 
 # ============================================================
 # 4. استيراد المكونات من المشروع
 # ============================================================
@@ -36,31 +38,31 @@ from app.components.uploader import render_uploader
 from app.components.results import display_full_results, display_error_message
 from app.components.metrics import display_metrics_dashboard
 from app.components.charts import display_all_charts
-
+ 
 from app.utils.model_loader import load_model, display_model_summary
 from app.utils.predictor import predict_from_uploaded, display_prediction_results
 from app.utils.image_processor import display_image_info
 from app.utils.formatter import format_class_name, format_confidence
-
+ 
 # ============================================================
 # 5. إعدادات المشروع
 # ============================================================
-
+ 
 # مسارات النماذج
 MODEL_PATH = "models_saved/keras_model.h5"
 METADATA_PATH = "models_saved/metadata/model_config.json"
 CLASS_NAMES_PATH = "models_saved/metadata/class_names.json"
-
+ 
 # أسماء الفئات الافتراضية
 DEFAULT_CLASS_NAMES = ['glioma', 'meningioma', 'pituitary', 'notumor']
-
+ 
 # حجم الصورة المستهدف
 TARGET_SIZE = (224, 224)
-
+ 
 # ============================================================
 # 6. تحميل أسماء الفئات
 # ============================================================
-
+ 
 def load_class_names() -> list:
     """
     تحميل أسماء الفئات من ملف أو استخدام الافتراضية.
@@ -77,11 +79,11 @@ def load_class_names() -> list:
         st.warning(f"⚠️ تعذر تحميل أسماء الفئات: {e}")
     
     return DEFAULT_CLASS_NAMES
-
+ 
 # ============================================================
 # 7. تحميل النموذج
 # ============================================================
-
+ 
 @st.cache_resource
 def get_model():
     """
@@ -96,11 +98,11 @@ def get_model():
         st.error(f"❌ ملف النموذج غير موجود: {MODEL_PATH}")
         st.info("💡 يرجى وضع ملف النموذج في المسار: models_saved/keras_model.h5")
         return None
-
+ 
 # ============================================================
 # 8. تهيئة حالة الجلسة
 # ============================================================
-
+ 
 def init_session_state():
     """
     تهيئة متغيرات حالة الجلسة.
@@ -122,11 +124,11 @@ def init_session_state():
     
     if 'uploaded_file_path' not in st.session_state:
         st.session_state.uploaded_file_path = None
-
+ 
 # ============================================================
 # 9. الصفحة الرئيسية (Home)
 # ============================================================
-
+ 
 def home_page():
     """
     عرض الصفحة الرئيسية للتطبيق.
@@ -168,7 +170,8 @@ def home_page():
     st.markdown("## 📤 تحميل صورة للتحليل")
     
     # استخدام مكون رفع الصور
-    image, file_path, metadata, controls = render_uploader(show_preview=True)
+    # ملاحظة: render_uploader بترجع 3 قيم بس (image, file_path, metadata)
+    image, file_path, metadata = render_uploader(show_preview=True)
     
     if image is not None:
         st.session_state.uploaded_image = image
@@ -225,11 +228,11 @@ def home_page():
         - **التفسير:** استخدم Grad-CAM لفهم المنطقة التي ركز عليها النموذج.
         - **الثقة:** النتائج التي تزيد عن 80% تعتبر موثوقة جدًا.
         """)
-
+ 
 # ============================================================
 # 10. صفحة تحليل الصورة
 # ============================================================
-
+ 
 def analyze_page():
     """
     عرض صفحة تحليل الصورة.
@@ -238,7 +241,8 @@ def analyze_page():
     st.markdown("---")
     
     # استخدام مكون رفع الصور
-    image, file_path, metadata, controls = render_uploader(show_preview=True)
+    # ملاحظة: render_uploader بترجع 3 قيم بس (image, file_path, metadata)
+    image, file_path, metadata = render_uploader(show_preview=True)
     
     if image is not None:
         st.session_state.uploaded_image = image
@@ -282,11 +286,11 @@ def analyze_page():
             st.rerun()
     else:
         st.info("💡 قم برفع صورة وتحليلها لعرض النتائج هنا.")
-
+ 
 # ============================================================
 # 11. دالة عرض الصفحة حسب التنقل
 # ============================================================
-
+ 
 def render_page(page: str):
     """
     عرض الصفحة المحددة.
@@ -300,11 +304,11 @@ def render_page(page: str):
         analyze_page()
     else:
         home_page()
-
+ 
 # ============================================================
 # 12. تشغيل التطبيق
 # ============================================================
-
+ 
 def main():
     """
     تشغيل التطبيق الرئيسي.
@@ -367,10 +371,11 @@ def main():
     
     # 3. عرض الصفحة المحددة
     render_page(st.session_state.page)
-
+ 
 # ============================================================
 # 13. تشغيل التطبيق
 # ============================================================
-
+ 
 if __name__ == "__main__":
     main()
+ 
