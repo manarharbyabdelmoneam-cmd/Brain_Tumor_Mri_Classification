@@ -1,5 +1,3 @@
-
-Main · PY
 # ============================================================
 # app/main.py
 # الملف الرئيسي لتطبيق Streamlit - Brain Tumor MRI Classifier
