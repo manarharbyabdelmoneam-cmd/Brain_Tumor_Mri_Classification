@@ -1,1 +1,78 @@
-
+{
+  "class_names": [
+    "glioma",
+    "meningioma",
+    "pituitary",
+    "notumor"
+  ],
+  "class_info": {
+    "glioma": {
+      "index": 0,
+      "display_name": "Glioma",
+      "description": "ورم دبقي - ينشأ من الخلايا الدبقية في الدماغ",
+      "color": "#FF6B6B",
+      "emoji": "🧬",
+      "common_symptoms": [
+        "صداع",
+        "غثيان",
+        "تشنجات",
+        "تغيرات في الرؤية"
+      ]
+    },
+    "meningioma": {
+      "index": 1,
+      "display_name": "Meningioma",
+      "description": "ورم سحائي - ينشأ من السحايا (الأغشية المحيطة بالدماغ)",
+      "color": "#4ECDC4",
+      "emoji": "🧬",
+      "common_symptoms": [
+        "صداع",
+        "ضعف في الأطراف",
+        "تغيرات في الشخصية",
+        "نوبات صرع"
+      ]
+    },
+    "pituitary": {
+      "index": 2,
+      "display_name": "Pituitary",
+      "description": "ورم غدة نخامية - ينشأ من الغدة النخامية في قاعدة الدماغ",
+      "color": "#45B7D1",
+      "emoji": "🧬",
+      "common_symptoms": [
+        "صداع",
+        "مشاكل في الرؤية",
+        "اضطرابات هرمونية",
+        "تعب وإرهاق"
+      ]
+    },
+    "notumor": {
+      "index": 3,
+      "display_name": "No Tumor",
+      "description": "لا يوجد ورم - صورة سليمة بدون أي أورام",
+      "color": "#96CEB4",
+      "emoji": "✅",
+      "common_symptoms": [
+        "لا توجد أعراض",
+        "نتائج طبيعية"
+      ]
+    }
+  },
+  "num_classes": 4,
+  "training_samples_per_class": {
+    "glioma": 1400,
+    "meningioma": 1400,
+    "pituitary": 1400,
+    "notumor": 1400
+  },
+  "test_samples_per_class": {
+    "glioma": 400,
+    "meningioma": 400,
+    "pituitary": 400,
+    "notumor": 400
+  },
+  "total_training_samples": 5600,
+  "total_test_samples": 1600,
+  "dataset_source": "https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset",
+  "dataset_version": "2.0",
+  "last_updated": "2024-01-01T00:00:00"
+}
