@@ -162,11 +162,11 @@ def display_image_with_gradcam(original_image: np.ndarray,
     
     with col1:
         st.markdown("**📷 الصورة الأصلية**")
-        st.image(original_image, use_container_width=True)
+        st.image(original_image, use_column_width=True)
     
     with col2:
         st.markdown("**🔥 Grad-CAM (المنطقة المؤثرة)**")
-        st.image(gradcam_image, use_container_width=True)
+        st.image(gradcam_image, use_column_width=True)
     
     # إضافة شرح بسيط
     st.caption(f"""
