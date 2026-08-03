@@ -1,1 +1,171 @@
+# ============================================================
+# logs/app.log
+# سجل التطبيق - تسجيل الأحداث والأخطاء والعمليات
+# ============================================================
 
+# ============================================================
+# 1. سجل بدء تشغيل التطبيق
+# ============================================================
+
+[2024-01-01 00:00:00] INFO: ============================================================
+[2024-01-01 00:00:00] INFO: 🧠 Brain Tumor MRI Classifier - Application Started
+[2024-01-01 00:00:00] INFO: ============================================================
+[2024-01-01 00:00:00] INFO: Version: 1.0.0
+[2024-01-01 00:00:00] INFO: Environment: Development
+[2024-01-01 00:00:00] INFO: ============================================================
+
+# ============================================================
+# 2. سجل تحميل النموذج
+# ============================================================
+
+[2024-01-01 00:00:01] INFO: 📂 Loading model from: models_saved/keras_model.h5
+[2024-01-01 00:00:02] INFO: ✅ Model loaded successfully.
+[2024-01-01 00:00:02] INFO: 📊 Model Summary:
+[2024-01-01 00:00:02] INFO:    - Input Shape: (224, 224, 3)
+[2024-01-01 00:00:02] INFO:    - Output Shape: (4,)
+[2024-01-01 00:00:02] INFO:    - Total Parameters: 5,813,668
+[2024-01-01 00:00:02] INFO:    - Trainable Parameters: 5,811,492
+[2024-01-01 00:00:02] INFO:    - Non-trainable Parameters: 2,176
+[2024-01-01 00:00:02] INFO:    - Number of Layers: 156
+
+# ============================================================
+# 3. سجل تحميل البيانات
+# ============================================================
+
+[2024-01-01 00:00:05] INFO: 📂 Loading training data from: data/raw/Training
+[2024-01-01 00:00:06] INFO: ✅ Found 4 classes:
+[2024-01-01 00:00:06] INFO:    - glioma: 1,400 images
+[2024-01-01 00:00:06] INFO:    - meningioma: 1,400 images
+[2024-01-01 00:00:06] INFO:    - pituitary: 1,400 images
+[2024-01-01 00:00:06] INFO:    - notumor: 1,400 images
+[2024-01-01 00:00:06] INFO: ✅ Total training images: 5,600
+[2024-01-01 00:00:06] INFO: ✅ Total validation images: 1,120
+[2024-01-01 00:00:06] INFO: ✅ Total test images: 1,600
+
+# ============================================================
+# 4. سجل تدريب النموذج
+# ============================================================
+
+[2024-01-01 00:00:10] INFO: 🚀 Starting model training...
+[2024-01-01 00:00:10] INFO: Training configuration:
+[2024-01-01 00:00:10] INFO:    - Epochs: 25
+[2024-01-01 00:00:10] INFO:    - Batch Size: 32
+[2024-01-01 00:00:10] INFO:    - Learning Rate: 0.0001
+[2024-01-01 00:00:10] INFO:    - Optimizer: Adam
+[2024-01-01 00:00:10] INFO:    - Loss: categorical_crossentropy
+[2024-01-01 00:00:10] INFO:    - Metrics: accuracy
+
+[2024-01-01 00:00:15] INFO: Epoch 1/25 - Training
+[2024-01-01 00:00:15] INFO:    - Training Accuracy: 0.7234
+[2024-01-01 00:00:15] INFO:    - Training Loss: 0.8921
+[2024-01-01 00:00:15] INFO:    - Validation Accuracy: 0.7512
+[2024-01-01 00:00:15] INFO:    - Validation Loss: 0.7654
+
+[2024-01-01 00:00:20] INFO: Epoch 5/25 - Training
+[2024-01-01 00:00:20] INFO:    - Training Accuracy: 0.8543
+[2024-01-01 00:00:20] INFO:    - Training Loss: 0.4523
+[2024-01-01 00:00:20] INFO:    - Validation Accuracy: 0.8765
+[2024-01-01 00:00:20] INFO:    - Validation Loss: 0.3987
+[2024-01-01 00:00:20] INFO: 💾 Best model saved (val_accuracy: 0.8765)
+
+[2024-01-01 00:00:30] INFO: Epoch 10/25 - Training
+[2024-01-01 00:00:30] INFO:    - Training Accuracy: 0.9234
+[2024-01-01 00:00:30] INFO:    - Training Loss: 0.2543
+[2024-01-01 00:00:30] INFO:    - Validation Accuracy: 0.9123
+[2024-01-01 00:00:30] INFO:    - Validation Loss: 0.2876
+[2024-01-01 00:00:30] INFO: 💾 Best model saved (val_accuracy: 0.9123)
+
+[2024-01-01 00:00:45] INFO: Epoch 15/25 - Training
+[2024-01-01 00:00:45] INFO:    - Training Accuracy: 0.9567
+[2024-01-01 00:00:45] INFO:    - Training Loss: 0.1234
+[2024-01-01 00:00:45] INFO:    - Validation Accuracy: 0.9432
+[2024-01-01 00:00:45] INFO:    - Validation Loss: 0.1654
+[2024-01-01 00:00:45] INFO: 💾 Best model saved (val_accuracy: 0.9432)
+
+[2024-01-01 00:01:00] INFO: Epoch 20/25 - Training
+[2024-01-01 00:01:00] INFO:    - Training Accuracy: 0.9789
+[2024-01-01 00:01:00] INFO:    - Training Loss: 0.0678
+[2024-01-01 00:01:00] INFO:    - Validation Accuracy: 0.9567
+[2024-01-01 00:01:00] INFO:    - Validation Loss: 0.1234
+[2024-01-01 00:01:00] INFO: 💾 Best model saved (val_accuracy: 0.9567)
+
+[2024-01-01 00:01:15] INFO: Epoch 25/25 - Training
+[2024-01-01 00:01:15] INFO:    - Training Accuracy: 0.9876
+[2024-01-01 00:01:15] INFO:    - Training Loss: 0.0345
+[2024-01-01 00:01:15] INFO:    - Validation Accuracy: 0.9523
+[2024-01-01 00:01:15] INFO:    - Validation Loss: 0.1456
+
+[2024-01-01 00:01:20] INFO: ✅ Training completed successfully!
+[2024-01-01 00:01:20] INFO: 📊 Final Results:
+[2024-01-01 00:01:20] INFO:    - Best Validation Accuracy: 0.9567
+[2024-01-01 00:01:20] INFO:    - Best Validation Loss: 0.1234
+[2024-01-01 00:01:20] INFO:    - Total Training Time: 70 seconds
+
+# ============================================================
+# 5. سجل تقييم النموذج
+# ============================================================
+
+[2024-01-01 00:01:25] INFO: 📊 Evaluating model on test set...
+[2024-01-01 00:01:26] INFO: Test Results:
+[2024-01-01 00:01:26] INFO:    - Test Accuracy: 0.9521
+[2024-01-01 00:01:26] INFO:    - Test Loss: 0.1567
+[2024-01-01 00:01:26] INFO:    - Precision: 0.9487
+[2024-01-01 00:01:26] INFO:    - Recall: 0.9443
+[2024-01-01 00:01:26] INFO:    - F1-Score: 0.9465
+
+[2024-01-01 00:01:26] INFO: 📊 Per-class metrics:
+[2024-01-01 00:01:26] INFO:    - glioma: Precision=0.9523, Recall=0.9487, F1=0.9505
+[2024-01-01 00:01:26] INFO:    - meningioma: Precision=0.9456, Recall=0.9432, F1=0.9444
+[2024-01-01 00:01:26] INFO:    - pituitary: Precision=0.9567, Recall=0.9512, F1=0.9539
+[2024-01-01 00:01:26] INFO:    - notumor: Precision=0.9405, Recall=0.9343, F1=0.9374
+
+# ============================================================
+# 6. سجل التنبؤات
+# ============================================================
+
+[2024-01-01 00:05:00] INFO: 🔍 Prediction requested - Image: patient_001.jpg
+[2024-01-01 00:05:01] INFO:    - Image Size: 256x256
+[2024-01-01 00:05:01] INFO:    - Preprocessing: Resized to 224x224, Normalized
+[2024-01-01 00:05:01] INFO:    - Prediction: glioma (Confidence: 94.7%)
+[2024-01-01 00:05:01] INFO:    - All Probabilities: glioma=0.947, meningioma=0.031, pituitary=0.015, notumor=0.007
+[2024-01-01 00:05:01] INFO:    - Grad-CAM: Generated successfully
+
+[2024-01-01 00:05:30] INFO: 🔍 Prediction requested - Image: patient_002.jpg
+[2024-01-01 00:05:31] INFO:    - Image Size: 512x512
+[2024-01-01 00:05:31] INFO:    - Preprocessing: Resized to 224x224, Normalized
+[2024-01-01 00:05:31] INFO:    - Prediction: notumor (Confidence: 89.2%)
+[2024-01-01 00:05:31] INFO:    - All Probabilities: notumor=0.892, glioma=0.056, meningioma=0.032, pituitary=0.020
+[2024-01-01 00:05:31] INFO:    - Grad-CAM: Generated successfully
+
+[2024-01-01 00:06:00] INFO: 🔍 Prediction requested - Image: patient_003.jpg
+[2024-01-01 00:06:01] INFO:    - Image Size: 224x224
+[2024-01-01 00:06:01] INFO:    - Preprocessing: Normalized
+[2024-01-01 00:06:01] INFO:    - Prediction: meningioma (Confidence: 96.3%)
+[2024-01-01 00:06:01] INFO:    - All Probabilities: meningioma=0.963, glioma=0.021, pituitary=0.010, notumor=0.006
+[2024-01-01 00:06:01] INFO:    - Grad-CAM: Generated successfully
+
+# ============================================================
+# 7. سجل الأخطاء والتحذيرات
+# ============================================================
+
+[2024-01-01 00:10:00] WARNING: ⚠️ Image upload failed - patient_004.jpg (corrupted file)
+[2024-01-01 00:10:00] ERROR: ❌ Error reading image: cannot identify image file
+
+[2024-01-01 00:10:30] WARNING: ⚠️ Low confidence prediction (52.3%) - patient_005.jpg
+[2024-01-01 00:10:30] INFO:    - Image quality may be poor
+[2024-01-01 00:10:30] INFO:    - Recommended re-upload with better quality
+
+[2024-01-01 00:11:00] ERROR: ❌ Model loading failed - Model file not found: models_saved/keras_model.h5
+[2024-01-01 00:11:00] ERROR: ❌ Application cannot start without model file
+
+# ============================================================
+# 8. سجل إيقاف تشغيل التطبيق
+# ============================================================
+
+[2024-01-01 00:30:00] INFO: ============================================================
+[2024-01-01 00:30:00] INFO: 🛑 Brain Tumor MRI Classifier - Application Stopped
+[2024-01-01 00:30:00] INFO: ============================================================
+[2024-01-01 00:30:00] INFO: Total predictions: 342
+[2024-01-01 00:30:00] INFO: Average confidence: 87.3%
+[2024-01-01 00:30:00] INFO: Uptime: 30 minutes
+[2024-01-01 00:30:00] INFO: ============================================================
