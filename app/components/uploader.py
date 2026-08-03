@@ -126,7 +126,7 @@ def display_image_preview(image: np.ndarray, caption: Optional[str] = None) -> N
             pil_image = Image.fromarray(image.astype(np.uint8))
         else:
             pil_image = image
-        st.image(pil_image, caption=caption, use_container_width=True)
+        st.image(pil_image, caption=caption, width=700)
     except Exception as e:
         st.error(f"❌ خطأ في عرض الصورة: {e}")
 
@@ -192,16 +192,16 @@ def render_uploader(show_preview: bool = True,
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        # ✅ إصلاح: use_container_width بدل use_column_width
-        if st.button("📤 رفع صورة", use_container_width=True):
+        # ✅ عرض الصورة بعرض ثابت للتوافق مع جميع الـ Streamlit versions
+        if st.button("📤 رفع صورة", width=700):
             controls['upload_clicked'] = True
 
     with col2:
-        if st.button("🗑️ مسح الكل", use_container_width=True):
+        if st.button("🗑️ مسح الكل", width=700):
             controls['clear_clicked'] = True
 
     with col3:
-        if st.button("🔍 تحليل", use_container_width=True, type="primary"):
+        if st.button("🔍 تحليل", width=700, type="primary"):
             controls['analyze_clicked'] = True
 
     return image, file_path, metadata, controls
@@ -262,14 +262,14 @@ def display_upload_controls() -> Tuple[bool, bool, bool]:
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        # ✅ إصلاح: use_container_width بدل use_column_width
-        upload_clicked = st.button("📤 رفع صورة", use_container_width=True)
+        # ✅ عرض الصورة بعرض ثابت للتوافق مع جميع الـ Streamlit versions
+        upload_clicked = st.button("📤 رفع صورة", width=700)
 
     with col2:
-        clear_clicked = st.button("🗑️ مسح الكل", use_container_width=True)
+        clear_clicked = st.button("🗑️ مسح الكل", width=700)
 
     with col3:
-        analyze_clicked = st.button("🔍 تحليل", use_container_width=True, type="primary")
+        analyze_clicked = st.button("🔍 تحليل", width=700, type="primary")
 
     return upload_clicked, clear_clicked, analyze_clicked
 
