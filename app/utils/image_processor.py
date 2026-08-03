@@ -7,7 +7,7 @@ import numpy as np
 import cv2
 from PIL import Image
 import streamlit as st
-from typing import Optional, Tuple, List, Union, Any
+from typing import Optional, Tuple, List, Any, Dict
 import io
 import base64
 
