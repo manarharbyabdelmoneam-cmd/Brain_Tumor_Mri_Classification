@@ -66,7 +66,7 @@ def render_uploader(show_preview: bool = True,
         'upload_time': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
     
-    # 8. أزرار التحكم (إضافة controls)
+    # 8. أزرار التحكم
     controls = {
         'upload_clicked': False,
         'clear_clicked': False,
@@ -76,15 +76,15 @@ def render_uploader(show_preview: bool = True,
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        if st.button("📤 رفع صورة", use_container_width=True):
+        if st.button("📤 رفع صورة", use_column_width=True):
             controls['upload_clicked'] = True
     
     with col2:
-        if st.button("🗑️ مسح الكل", use_container_width=True):
+        if st.button("🗑️ مسح الكل", use_column_width=True):
             controls['clear_clicked'] = True
     
     with col3:
-        if st.button("🔍 تحليل", use_container_width=True, type="primary"):
+        if st.button("🔍 تحليل", use_column_width=True, type="primary"):
             controls['analyze_clicked'] = True
     
     return image, file_path, metadata, controls
