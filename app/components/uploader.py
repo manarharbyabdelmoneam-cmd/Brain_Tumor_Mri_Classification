@@ -6,7 +6,7 @@
 import streamlit as st
 import os
 import tempfile
-from typing import Optional, Tuple, List, Any, Dict
+from typing import Optional, Tuple, List, Any, Dict, Union
 from PIL import Image
 import numpy as np
 import cv2
