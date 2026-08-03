@@ -1,1 +1,321 @@
+/* ============================================================
+   Brain Tumor MRI Classifier - التنسيقات المخصصة
+   ============================================================ */
 
+/* ============================================================
+   1. التنسيقات العامة
+   ============================================================ */
+
+/* 1.1. تنسيق النصوص */
+.main-header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4A90D9;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(74, 144, 217, 0.2);
+}
+
+.sub-header {
+    font-size: 1.2rem;
+    color: #B0B0B0;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* 1.2. تنسيق البطاقات (Cards) */
+.custom-card {
+    background-color: #1E1E1E;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #333333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================
+   2. تنسيق الأزرار
+   ============================================================ */
+
+/* 2.1. الزر الرئيسي */
+.primary-btn {
+    background-color: #4A90D9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.primary-btn:hover {
+    background-color: #357ABD;
+    transform: scale(1.02);
+}
+
+.primary-btn:active {
+    transform: scale(0.98);
+}
+
+/* 2.2. الزر الثانوي */
+.secondary-btn {
+    background-color: transparent;
+    color: #4A90D9;
+    border: 2px solid #4A90D9;
+    border-radius: 8px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.secondary-btn:hover {
+    background-color: #4A90D9;
+    color: white;
+}
+
+/* ============================================================
+   3. تنسيق النتائج
+   ============================================================ */
+
+/* 3.1. مربع النتيجة */
+.result-box {
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    background: linear-gradient(145deg, #1E1E1E, #2A2A2A);
+    border: 2px solid #4A90D9;
+}
+
+/* 3.2. الفئة المتوقعة */
+.predicted-class {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4A90D9;
+    margin: 0.5rem 0;
+}
+
+/* 3.3. نسبة الثقة */
+.confidence-score {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4CAF50;
+}
+
+/* 3.4. نسبة الثقة المنخفضة */
+.confidence-low {
+    color: #FF6B6B;
+}
+
+/* 3.5. نسبة الثقة المتوسطة */
+.confidence-medium {
+    color: #FFD93D;
+}
+
+/* 3.6. نسبة الثقة العالية */
+.confidence-high {
+    color: #4CAF50;
+}
+
+/* ============================================================
+   4. تنسيق الصور
+   ============================================================ */
+
+/* 4.1. الصورة المرفوعة */
+.uploaded-image {
+    border-radius: 12px;
+    border: 2px solid #333333;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+/* 4.2. صورة Grad-CAM */
+.gradcam-image {
+    border-radius: 12px;
+    border: 2px solid #FF6B6B;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+/* ============================================================
+   5. تنسيق الشريط الجانبي
+   ============================================================ */
+
+.sidebar-header {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #4A90D9;
+    text-align: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #333333;
+}
+
+.sidebar-item {
+    padding: 0.75rem;
+    margin: 0.25rem 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar-item:hover {
+    background-color: #2A2A2A;
+}
+
+.sidebar-item.active {
+    background-color: #4A90D9;
+    color: white;
+}
+
+/* ============================================================
+   6. تنسيق الجداول
+   ============================================================ */
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+}
+
+.custom-table th {
+    background-color: #2A2A2A;
+    color: #4A90D9;
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 2px solid #4A90D9;
+}
+
+.custom-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #333333;
+}
+
+.custom-table tr:hover {
+    background-color: #1E1E1E;
+}
+
+/* ============================================================
+   7. تنسيق الشريط التقدمي
+   ============================================================ */
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #333333;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 20px;
+    margin: 0.5rem 0;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.5s ease;
+    background: linear-gradient(90deg, #4A90D9, #357ABD);
+}
+
+/* ============================================================
+   8. تنسيق الرسائل
+   ============================================================ */
+
+.success-message {
+    background-color: #1E3A1E;
+    color: #4CAF50;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #4CAF50;
+    margin: 1rem 0;
+}
+
+.error-message {
+    background-color: #3A1E1E;
+    color: #FF6B6B;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #FF6B6B;
+    margin: 1rem 0;
+}
+
+.warning-message {
+    background-color: #3A3A1E;
+    color: #FFD93D;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #FFD93D;
+    margin: 1rem 0;
+}
+
+/* ============================================================
+   9. تنسيق الشاشات الصغيرة (Responsive)
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .main-header {
+        font-size: 1.8rem;
+    }
+    
+    .sub-header {
+        font-size: 1rem;
+    }
+    
+    .predicted-class {
+        font-size: 1.5rem;
+    }
+    
+    .custom-card {
+        padding: 1rem;
+    }
+    
+    .primary-btn, .secondary-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ============================================================
+   10. تنسيقات إضافية للشكل العام
+   ============================================================ */
+
+/* 10.1. فواصل */
+.custom-divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #4A90D9, transparent);
+    margin: 2rem 0;
+}
+
+/* 10.2. أيقونات */
+.icon-large {
+    font-size: 3rem;
+    display: block;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+/* 10.3. تنسيق التذييل */
+.footer {
+    text-align: center;
+    color: #666666;
+    font-size: 0.8rem;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #333333;
+}
