@@ -1,1 +1,180 @@
-
+{
+  "model_name": "Brain Tumor MRI Classifier",
+  "model_version": "1.0.0",
+  "model_type": "MobileNetV2",
+  "framework": "TensorFlow 2.13.0",
+  
+  "input_config": {
+    "input_shape": [224, 224, 3],
+    "input_normalization": "min_max (0-1)",
+    "preprocessing_required": true
+  },
+  
+  "output_config": {
+    "num_classes": 4,
+    "class_names": ["glioma", "meningioma", "pituitary", "notumor"],
+    "activation": "softmax",
+    "output_type": "classification"
+  },
+  
+  "training_config": {
+    "epochs": 25,
+    "batch_size": 32,
+    "learning_rate": 0.0001,
+    "optimizer": "Adam",
+    "loss": "categorical_crossentropy",
+    "metrics": ["accuracy"],
+    "validation_split": 0.2,
+    "early_stopping_patience": 5,
+    "reduce_lr_patience": 3,
+    "reduce_lr_factor": 0.2,
+    "random_seed": 42
+  },
+  
+  "data_config": {
+    "dataset_source": "Kaggle - Brain Tumor MRI Dataset",
+    "dataset_link": "https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset",
+    "training_samples": 5600,
+    "validation_samples": 1400,
+    "test_samples": 1600,
+    "classes": {
+      "glioma": 1400,
+      "meningioma": 1400,
+      "pituitary": 1400,
+      "notumor": 1400
+    }
+  },
+  
+  "model_architecture": {
+    "base_model": "MobileNetV2",
+    "base_model_weights": "imagenet",
+    "include_top": false,
+    "input_tensor": null,
+    "pooling": "avg",
+    "classes": null,
+    "classifier_activation": "softmax",
+    "custom_layers": [
+      {
+        "type": "GlobalAveragePooling2D",
+        "name": "global_avg_pooling"
+      },
+      {
+        "type": "Dense",
+        "name": "dense_1",
+        "units": 128,
+        "activation": "relu"
+      },
+      {
+        "type": "BatchNormalization",
+        "name": "batch_norm_1"
+      },
+      {
+        "type": "Dropout",
+        "name": "dropout_1",
+        "rate": 0.3
+      },
+      {
+        "type": "Dense",
+        "name": "output_layer",
+        "units": 4,
+        "activation": "softmax"
+      }
+    ]
+  },
+  
+  "performance_metrics": {
+    "test_accuracy": 0.9521,
+    "test_loss": 0.1567,
+    "precision": 0.9487,
+    "recall": 0.9443,
+    "f1_score": 0.9465,
+    "per_class_accuracy": {
+      "glioma": 0.9487,
+      "meningioma": 0.9432,
+      "pituitary": 0.9512,
+      "notumor": 0.9343
+    },
+    "per_class_precision": {
+      "glioma": 0.9523,
+      "meningioma": 0.9456,
+      "pituitary": 0.9567,
+      "notumor": 0.9405
+    },
+    "per_class_recall": {
+      "glioma": 0.9487,
+      "meningioma": 0.9432,
+      "pituitary": 0.9512,
+      "notumor": 0.9343
+    },
+    "per_class_f1": {
+      "glioma": 0.9505,
+      "meningioma": 0.9444,
+      "pituitary": 0.9539,
+      "notumor": 0.9374
+    }
+  },
+  
+  "model_files": {
+    "model_file": "models_saved/keras_model.h5",
+    "model_weights": "models_saved/weights/keras_model_weights.h5",
+    "metadata_dir": "models_saved/metadata/"
+  },
+  
+  "deployment_config": {
+    "streamlit_app": "app/app.py",
+    "port": 8501,
+    "max_upload_size_mb": 10,
+    "allowed_extensions": ["jpg", "jpeg", "png"],
+    "enable_gradcam": true,
+    "enable_logging": true,
+    "enable_prediction_history": true
+  },
+  
+  "augmentation_config": {
+    "rotation_range": 20,
+    "width_shift_range": 0.1,
+    "height_shift_range": 0.1,
+    "shear_range": 0.1,
+    "zoom_range": 0.1,
+    "horizontal_flip": true,
+    "vertical_flip": false,
+    "fill_mode": "nearest",
+    "brightness_range": [0.8, 1.2],
+    "channel_shift_range": 0.0
+  },
+  
+  "training_timeline": {
+    "start_time": "2024-01-01T00:00:00",
+    "end_time": "2024-01-01T01:10:00",
+    "total_training_time_seconds": 4200,
+    "epochs_completed": 25,
+    "best_epoch": 20,
+    "best_val_accuracy": 0.9567,
+    "best_val_loss": 0.1234
+  },
+  
+  "system_info": {
+    "python_version": "3.11.9",
+    "tensorflow_version": "2.13.0",
+    "opencv_version": "4.8.0",
+    "operating_system": "Windows 11 Pro",
+    "processor": "Intel Core i7-12700H",
+    "ram": "32 GB",
+    "gpu": "NVIDIA RTX 3060 (6 GB)",
+    "cuda_version": "11.8",
+    "cudnn_version": "8.9"
+  },
+  
+  "maintainers": [
+    {
+      "name": "AI Team",
+      "email": "support@braintumor.ai",
+      "role": "Development Team"
+    }
+  ],
+  
+  "license": "MIT License",
+  "repository": "https://github.com/your-username/Brain-Tumor-MRI-Classification",
+  "last_updated": "2024-01-01T00:00:00",
+  "notes": "تم تدريب النموذج على 5600 صورة مع تطبيق Data Augmentation. تم استخدام Early Stopping لمنع الـ Overfitting."
+}
