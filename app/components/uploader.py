@@ -217,7 +217,7 @@ def display_image_preview(image: np.ndarray, caption: Optional[str] = None) -> N
         image_rgb = image
     
     # عرض الصورة
-    st.image(image_rgb, caption=caption, use_container_width=True)
+    st.image(image_rgb, caption=caption, use_column_width=True)
 
 # ============================================================
 # 8. مكون رفع الصورة الكامل
